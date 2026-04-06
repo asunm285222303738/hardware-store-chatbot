@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us | Hardware Shop{% endblock %}
+
+{% block content %}
+<div class="container contact-page">
+    <div class="contact-page-header">
+        <h1>Contact Us.</h1>
+        <p>Have questions about our professional tools? Our team of experts is ready to assist you.</p>
+    </div>
+
+    <div class="contact-grid">
+        <!-- Contact Form -->
+        <div class="contact-form-card">
+            <form method="post" action="#">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="form-label" for="full-name">Full Name</label>
+                    <input id="full-name" class="form-input" type="text" placeholder="Your full name" name="name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input id="email" class="form-input" type="email" placeholder="your@email.com" name="email">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="message">Message</label>
+                    <textarea id="message" class="form-textarea" placeholder="How can we help you?" name="message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary form-submit-btn">
+                    <span class="material-symbols-outlined">send</span>
+                    Send Message
+                </button>
+            </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <div class="contact-info-item">
+                <div class="info-icon-box">
+                    <span class="material-symbols-outlined">location_on</span>
+                </div>
+                <div>
+                    <p class="info-title">Main Headquarters</p>
+                    <p class="info-text">No.10, 1st Street, Nehru Nagar<br>Ponneri - 601204, Tamil Nadu</p>
+                </div>
+            </div>
+
+            <div class="contact-info-item">
+                <div class="info-icon-box">
+                    <span class="material-symbols-outlined">call</span>
+                </div>
+                <div>
+                    <p class="info-title">Support Line</p>
+                    <p class="info-text">+91 8807028076<br>Available Mon–Fri, 9am – 6pm PST</p>
+                </div>
+            </div>
+
+            <div class="contact-info-item">
+                <div class="info-icon-box">
+                    <span class="material-symbols-outlined">mail</span>
+                </div>
+                <div>
+                    <p class="info-title">Email Enquiries</p>
+                    <p class="info-text">[IntelligentHardware@gmail.com]<br>We respond within 24 hours</p>
+                </div>
+            </div>
+
+            <div class="contact-info-item">
+                <div class="info-icon-box">
+                    <span class="material-symbols-outlined">schedule</span>
+                </div>
+                <div>
+                    <p class="info-title">Business Hours</p>
+                    <p class="info-text">Monday – Friday: 9:00 AM – 6:00 PM<br>Saturday: 10:00 AM – 3:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Products Catalog | Hardware Shop{% endblock %}
+
+{% block content %}
+<div class="container products-page">
+    <div class="products-page-header">
+        <h1>Hardware Catalog.</h1>
+        <p>Browse our full range of professional tools and materials, engineered for precision and built for endurance.</p>
+    </div>
+
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <div class="card-img">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% else %}
+                    <img src="https://placehold.co/400x400/e7eff3/546166?text={{ product.name|urlencode }}" alt="{{ product.name }}">
+                {% endif %}
+                <div class="card-sku-badge">SKU: {{ product.id|stringformat:"03d" }}-HP</div>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">{{ product.name }}</h3>
+                <div class="stock-status">
+                    <span class="dot {% if product.stock_quantity > 5 %}green{% else %}amber{% endif %}"></span>
+                    <span>{{ product.stock_quantity }} in stock</span>
+                </div>
+                <p style="font-size:0.8125rem;color:var(--on-surface-variant);line-height:1.5;flex-grow:1;margin-bottom:1rem;">
+                    {{ product.description|truncatechars:80 }}
+                </p>
+                <div class="card-footer">
+                    <span class="price-text">₹{{ product.price }}</span>
+                    <button class="btn btn-primary buy-now-btn"
+                            data-product-id="{{ product.id }}"
+                            data-product-name="{{ product.name }}"
+                            data-product-price="{{ product.price }}"
+                            data-product-image="{% if product.image %}{{ product.image.url }}{% else %}https://placehold.co/400x400/e7eff3/546166?text={{ product.name|urlencode }}{% endif %}">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <span class="material-symbols-outlined" style="font-size:3rem;color:var(--outline-variant);">inventory_2</span>
+            <p style="margin-top:1rem;">No products available in the catalog yet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
